@@ -1,31 +1,39 @@
-﻿using Microsoft.Xna.Framework;
+﻿using HCFarming.src;
+using HCFarming.src.gui;
+using HCFarming.src.rooms;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 namespace HCFarming
 {
-	public class Game1 : Game
+	public class Main : Game
 	{
-		private GraphicsDeviceManager _graphics;
-		private SpriteBatch _spriteBatch;
+		private GraphicsDeviceManager graphics;
+		private Rendering renderer;
+		private RoomManager roomManager;
+		private GUIManager guiManager;
 
-		public Game1()
+		public Main()
 		{
-			_graphics = new GraphicsDeviceManager(this);
+			graphics = new GraphicsDeviceManager(this);
 			Content.RootDirectory = "Content";
 			IsMouseVisible = true;
+
 		}
 
 		protected override void Initialize()
 		{
 			// TODO: Add your initialization logic here
+			roomManager = new RoomManager();
+			guiManager = new GUIManager();
+			renderer = new Rendering(graphics.GraphicsDevice);
 
 			base.Initialize();
 		}
 
 		protected override void LoadContent()
 		{
-			_spriteBatch = new SpriteBatch(GraphicsDevice);
 
 			// TODO: use this.Content to load your game content here
 		}
@@ -35,6 +43,8 @@ namespace HCFarming
 			if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
 				Exit();
 
+			if (Keyboard.GetState().IsKeyDown(Keys.Space)) roomManager.MoveRoom(RoomLibrary.farm);
+
 			// TODO: Add your update logic here
 
 			base.Update(gameTime);
@@ -42,9 +52,9 @@ namespace HCFarming
 
 		protected override void Draw(GameTime gameTime)
 		{
-			GraphicsDevice.Clear(Color.CornflowerBlue);
+			GraphicsDevice.Clear(RoomManager.currentRoom.backgroundColor);
 
-			// TODO: Add your drawing code here
+			renderer.Draw(gameTime);
 
 			base.Draw(gameTime);
 		}
