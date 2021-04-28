@@ -93,7 +93,6 @@ namespace HCFarming.src.rooms
 		public void DrawTiles(SpriteBatch batch)
 		{
 			if (tileSet == null) return;
-			Debug.WriteLine("Test");
 
 			for(int y = 0; y < tiles.Length; y++)
 			{
