@@ -2,8 +2,11 @@
 using HCFarming.src.gui;
 using HCFarming.src.rooms;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Drawing;
+using System.Runtime.CompilerServices;
 
 namespace HCFarming
 {
@@ -14,12 +17,15 @@ namespace HCFarming
 		private RoomManager roomManager;
 		private GUIManager guiManager;
 
+		public static ContentManager content;
+
 		public Main()
 		{
 			graphics = new GraphicsDeviceManager(this);
 			Content.RootDirectory = "Content";
 			IsMouseVisible = true;
 
+			content = Content;
 		}
 
 		protected override void Initialize()

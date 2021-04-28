@@ -22,7 +22,16 @@ namespace HCFarming.src.rooms
 			
 		}
 
-		public override void DrawTiles(SpriteBatch batch)
+		public new void DrawTiles(SpriteBatch batch)
 		{}
+
+		public override void Load()
+		{
+		}
+
+		protected override string GetTilesetTexture()
+		{
+			return null;
+		}
 	}
 }
