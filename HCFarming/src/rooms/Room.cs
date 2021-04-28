@@ -1,8 +1,10 @@
 ﻿using HCFarming.src.tiles;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace HCFarming.src.rooms
@@ -11,8 +13,8 @@ namespace HCFarming.src.rooms
 	{
 
 		public Color backgroundColor { get; protected set; }
-		public Tile[][] tiles { get; private set; }
-		//public TileSet tileSet {get; private set;}
+		public int[][] tiles { get; private set; }
+		public TileSet tileSet {get; private set;}
 
 		public readonly string RoomName;
 
@@ -25,16 +27,31 @@ namespace HCFarming.src.rooms
 
 			RoomName = roomName;
 
-			tiles = new Tile[height][];
+			tiles = new int[height][];
 
 
 			for(int i = 0; i < height; i++)
 			{
-				tiles[i] = new Tile[width];
+				tiles[i] = new int[width];
+				
+				for(int j = 0; j < width; j++)
+				{
+					tiles[i][j] = -1;
+				}
+			}
+
+			if(GetTilesetTexture() != null)
+			{
+				Load();
+				tileSet = new TileSet(GetTilesetTexture());
 			}
 
 			RoomManager.RegisterRoom(this);
 		}
+
+		public abstract void Load();
+
+		protected abstract string GetTilesetTexture();
 
 		/// <summary>
 		/// Sets a particular x and y position in the room's tile array. Returns false if the tile is already taken. If you wish to override the tile, use the alternate SetTile function, SetTile(x, y, tile, true/false)
@@ -43,11 +60,11 @@ namespace HCFarming.src.rooms
 		/// <param name="yPos"></param>
 		/// <param name="tile"></param>
 		/// <returns></returns>
-		protected bool SetTile(int xPos, int yPos, Tile tile)
+		protected bool SetTile(int xPos, int yPos, int tileIndex)
 		{
-			if(tiles[yPos][xPos] == null)
+			if(tiles[yPos][xPos] == -1)
 			{
-				tiles[yPos][xPos] = tile;
+				tiles[yPos][xPos] = tileIndex;
 				return true;
 			}
 
@@ -62,18 +79,35 @@ namespace HCFarming.src.rooms
 		/// <param name="tile"></param>
 		/// <param name="rewrite"></param>
 		/// <returns></returns>
-		protected bool SetTile(int xPos, int yPos, Tile tile, bool rewrite)
+		protected bool SetTile(int xPos, int yPos, int tileIndex, bool rewrite)
 		{
 			if (rewrite)
 			{
-				tiles[yPos][xPos] = tile;
+				tiles[yPos][xPos] = tileIndex;
 				return true;
 			}
 
-			return SetTile(xPos, yPos, tile);
+			return SetTile(xPos, yPos, tileIndex);
 		}
 
-		public abstract void DrawTiles(SpriteBatch batch);
+		public void DrawTiles(SpriteBatch batch)
+		{
+			if (tileSet == null) return;
+			Debug.WriteLine("Test");
+
+			for(int y = 0; y < tiles.Length; y++)
+			{
+				for(int x = 0; x < tiles[y].Length; x++)
+				{
+
+					if (tiles[y][x] == -1) continue;
+
+					batch.Draw(tileSet.tilesetTexture, new Rectangle((int)(x * tileSet.tileSize), (int)(y * tileSet.tileSize), tileSet.tileSize, tileSet.tileSize), tileSet.textureList[tiles[y][x]], Color.White);
+
+				}
+			}
+
+		}
 
 		public abstract void DrawEntities(SpriteBatch batch);
 

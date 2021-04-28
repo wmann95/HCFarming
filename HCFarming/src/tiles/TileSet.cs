@@ -8,34 +8,33 @@ namespace HCFarming.src.tiles
 {
 	class TileSet
 	{
-		private int tileSize = 32;
-		private readonly Texture2D tilesetTexture;
+		public readonly int tileSize = 32;
+		public readonly Texture2D tilesetTexture;
 
-		private Rectangle[][] textureList;
+		private int xCount, yCount;
+
+		public Rectangle[] textureList { get; private set; }
 
 		public TileSet(string textureName)
 		{
-			tilesetTexture = Texture2D.FromFile(Rendering.device, textureName);
 
-			int xCount = tilesetTexture.Width / 32;
-			int yCount = tilesetTexture.Height / 32;
+			tilesetTexture = Main.content.Load<Texture2D>(textureName);
 
-			textureList = new Rectangle[yCount][];
+			xCount = tilesetTexture.Width / tileSize;
+			yCount = tilesetTexture.Height / tileSize;
 
-			for(int i = 0; i < yCount; i++)
+			textureList = new Rectangle[xCount * yCount];
+
+			for(int i = 0; i < xCount * yCount; i++)
 			{
-				textureList[i] = new Rectangle[xCount];
 
-				for (int j = 0; j < xCount; j++)
-				{
+				int x = (int)(i % xCount);
+				int y = (int)(i / xCount);
 
-					Rectangle rect = new Rectangle(j * tileSize, i * tileSize, tileSize, tileSize);
+				textureList[i] = new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize);
 
-				}
 			}
 		}
-
-
 
 	}
 }
