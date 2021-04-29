@@ -35,6 +35,8 @@ namespace HCFarming
 			guiManager = new GUIManager();
 			renderer = new Rendering(graphics.GraphicsDevice);
 
+			GUIButton newButton = new GUIButton();
+
 			base.Initialize();
 		}
 
@@ -49,7 +51,9 @@ namespace HCFarming
 			if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
 				Exit();
 
-			if (Keyboard.GetState().IsKeyDown(Keys.Space)) roomManager.MoveRoom(RoomLibrary.farm);
+			//if (Keyboard.GetState().IsKeyDown(Keys.Space)) roomManager.MoveRoom(RoomLibrary.farm);
+
+			InputManager.Update();
 
 			// TODO: Add your update logic here
 
