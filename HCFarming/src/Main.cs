@@ -30,12 +30,10 @@ namespace HCFarming
 
 		protected override void Initialize()
 		{
-			// TODO: Add your initialization logic here
-			roomManager = new RoomManager();
 			guiManager = new GUIManager();
+			roomManager = new RoomManager();
 			renderer = new Rendering(graphics.GraphicsDevice);
 
-			GUIButton newButton = new GUIButton();
 
 			base.Initialize();
 		}
@@ -43,7 +41,6 @@ namespace HCFarming
 		protected override void LoadContent()
 		{
 
-			// TODO: use this.Content to load your game content here
 		}
 
 		protected override void Update(GameTime gameTime)
@@ -54,8 +51,7 @@ namespace HCFarming
 			//if (Keyboard.GetState().IsKeyDown(Keys.Space)) roomManager.MoveRoom(RoomLibrary.farm);
 
 			InputManager.Update();
-
-			// TODO: Add your update logic here
+			GUIManager.Update();
 
 			base.Update(gameTime);
 		}

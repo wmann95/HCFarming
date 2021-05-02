@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Input;
+﻿using HCFarming.src.events;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace HCFarming.src
 	{
 		//Mouse
 		static MouseState oldState;
+		static MouseState newState;
 
 		private static List<MouseListener> mouseListeners = new List<MouseListener>();
 		private static List<KeyListener> keyListeners = new List<KeyListener>();
@@ -23,14 +25,16 @@ namespace HCFarming.src
 				return;
 			}
 
-			MouseState newState = Mouse.GetState();
+			newState = Mouse.GetState();
+
+			
 
 			//check if left mousebutton was pressed, then released.
 			if (newState.LeftButton == ButtonState.Released && oldState.LeftButton == ButtonState.Pressed)
 			{
 				foreach (MouseListener m in mouseListeners)
 				{
-					m.OnMouseClicked(MouseListener.MouseButton.Left);
+					m.OnMouseClicked(new MouseEvent(MouseEvent.Button.Left, newState.X, newState.Y));
 				}
 			}
 			//check if middle mousebutton was pressed, then released.
@@ -38,7 +42,7 @@ namespace HCFarming.src
 			{
 				foreach (MouseListener m in mouseListeners)
 				{
-					m.OnMouseClicked(MouseListener.MouseButton.Middle);
+					m.OnMouseClicked(new MouseEvent(MouseEvent.Button.Left, newState.X, newState.Y));
 				}
 			}
 			//check if right mousebutton was pressed, then released.
@@ -46,13 +50,14 @@ namespace HCFarming.src
 			{
 				foreach (MouseListener m in mouseListeners)
 				{
-					m.OnMouseClicked(MouseListener.MouseButton.Right);
+					m.OnMouseClicked(new MouseEvent(MouseEvent.Button.Left, newState.X, newState.Y));
 				}
 			}
 
 
 			oldState = Mouse.GetState();
 		}
+
 
 		public static void RegisterListener<T>(T t)
 		{
@@ -71,9 +76,9 @@ namespace HCFarming.src
 	public interface MouseListener
 	{
 		enum MouseButton { Left, Middle, Right}
-		void OnMouseDown(MouseButton button);
-		void OnMouseUp(MouseButton button);
-		void OnMouseClicked(MouseButton button);
+		void OnMouseDown(MouseEvent e);
+		void OnMouseUp(MouseEvent e);
+		void OnMouseClicked(MouseEvent e);
 	}
 	public interface KeyListener
 	{
