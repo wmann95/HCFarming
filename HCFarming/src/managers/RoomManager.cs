@@ -15,7 +15,7 @@ namespace HCFarming.src.rooms
 		public RoomManager()
 		{
 
-			currentRoom = RoomLibrary.mainMenu;
+			currentRoom = Room.mainMenu;
 			//currentRoom = RoomLibrary.farm;
 		}
 
@@ -30,12 +30,12 @@ namespace HCFarming.src.rooms
 			{
 				currentRoom = roomLib[room.RoomName];
 
-				Debug.WriteLine(String.Format("Moving to Room:{0}", room.RoomName));
+				Debug.WriteLine("Moving to: " + room.RoomName);
 
 				return true;
 			}
 
-			Debug.WriteLine(String.Format("Could not find Room:${0}", room.RoomName));
+			Debug.WriteLine("Could not find Room:${0}", room.RoomName);
 			return false;
 		}
 
@@ -43,7 +43,7 @@ namespace HCFarming.src.rooms
 		{
 			if (roomLib.ContainsKey(room.RoomName))
 			{
-				Debug.WriteLine(String.Format("$Room:{0} has already been registered!", room.RoomName));
+				Debug.WriteLine("$Room:{0} has already been registered!", room.RoomName);
 				return false;
 			}
 

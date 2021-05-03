@@ -25,11 +25,11 @@ namespace HCFarming.src.gui
 
 		public override void OnMouseClicked(MouseEvent e)
 		{
-			//Debug.WriteLine(String.Format("Mouse Pos: {0}; Rect: {1}", e.Position, bounds));
+			Debug.WriteLine("Mouse Pos: {0}; Rect: {1}", e.Position, bounds);
 
 			if (InputHelper.isPointInBounds(e.Position, bounds))
 			{
-				RoomManager.MoveRoom(RoomLibrary.farm);
+				RoomManager.MoveRoom(Room.farm);
 			}
 		}
 
