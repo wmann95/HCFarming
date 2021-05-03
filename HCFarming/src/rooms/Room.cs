@@ -1,4 +1,5 @@
-﻿using HCFarming.src.tiles;
+﻿using HCFarming.src.gui;
+using HCFarming.src.tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -40,9 +41,10 @@ namespace HCFarming.src.rooms
 				}
 			}
 
-			if(GetTilesetTexture() != null)
+			Load();
+
+			if (GetTilesetTexture() != null)
 			{
-				Load();
 				tileSet = new TileSet(GetTilesetTexture());
 			}
 
@@ -110,7 +112,10 @@ namespace HCFarming.src.rooms
 
 		public abstract void DrawEntities(SpriteBatch batch);
 
-		public abstract void DrawGUI(SpriteBatch batch);
+		public void DrawGUI(SpriteBatch batch)
+		{
+			GUIManager.Draw(batch);
+		}
 
 	}
 }

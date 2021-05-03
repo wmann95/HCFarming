@@ -19,7 +19,7 @@ namespace HCFarming.src.rooms
 			//currentRoom = RoomLibrary.farm;
 		}
 
-		public bool MoveRoom(Room room)
+		public static bool MoveRoom(Room room)
 		{
 			if (currentRoom == room)
 			{

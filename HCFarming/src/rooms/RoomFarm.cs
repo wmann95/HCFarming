@@ -33,9 +33,9 @@ namespace HCFarming.src.rooms
 			
 		}
 
-		public override void DrawGUI(SpriteBatch batch)
+		public new void DrawGUI(SpriteBatch batch)
 		{
-
+			base.DrawGUI(batch);
 		}
 
 		protected override string GetTilesetTexture()
