@@ -31,8 +31,8 @@ namespace HCFarming
 		protected override void Initialize()
 		{
 			guiManager = new GUIManager();
-			roomManager = new RoomManager();
 			renderer = new Rendering(graphics.GraphicsDevice);
+			roomManager = new RoomManager();
 
 
 			base.Initialize();

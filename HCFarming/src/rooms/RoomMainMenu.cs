@@ -29,7 +29,7 @@ namespace HCFarming.src.rooms
 		public override void Load()
 		{
 
-			GUIButton button = new GUIButton(this, "textures/gui/MainMenu/StartGameButton", new Vector2(256/2, 32/2), new Vector2(256/2, 32/2), 1f, 0f, 0f);
+			GUIButton button = new GUIButton(this, "textures/gui/MainMenu/StartGameButton", new Vector2(Rendering.device.Viewport.Width/2, Rendering.device.Viewport.Height / 2), new Vector2(256/2, 32/2), 1f, 0f, 0f);
 
 		}
 
