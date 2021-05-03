@@ -15,7 +15,7 @@ namespace HCFarming.src.rooms
 
 		public RoomFarm() : base("farm")
 		{
-			backgroundColor = Color.Black;
+			BackgroundColor = Color.Black;
 
 			for(int j = 0; j < tiles.Length; j++)
 			{

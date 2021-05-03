@@ -12,7 +12,7 @@ namespace HCFarming.src.rooms
 
 		public RoomMainMenu() : base("mainMenu")
 		{
-			backgroundColor = Color.Green;
+			BackgroundColor = Color.Green;
 		}
 
 		public override void DrawEntities(SpriteBatch batch)

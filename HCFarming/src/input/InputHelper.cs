@@ -12,7 +12,7 @@ namespace HCFarming.src.input
 		public static bool isPointInBounds(Point p, Rectangle rect)
 		{
 
-			Debug.WriteLine(String.Format("Mouse Pos: {0}; Rect: {1}", p, rect));
+			Console.WriteLine("Mouse Pos: {0}; Rect: {1}", p, rect);
 
 			return rect.Contains(p);
 		}

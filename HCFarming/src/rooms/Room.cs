@@ -12,8 +12,12 @@ namespace HCFarming.src.rooms
 {
 	abstract class Room
 	{
+		//--------------------------------------ROOM INSTANTIATION-------------------------------------------//
+		public static readonly Room farm = new RoomFarm();
+		public static readonly Room mainMenu = new RoomMainMenu();
+		//---------------------------------------------END--------------------------------------------------//
 
-		public Color backgroundColor { get; protected set; }
+		public Color BackgroundColor { get; protected set; }
 		public int[][] tiles { get; private set; }
 		public TileSet tileSet {get; private set;}
 
@@ -24,7 +28,7 @@ namespace HCFarming.src.rooms
 			int width = 100;
 			int height = 100;
 
-			backgroundColor = Color.CornflowerBlue;
+			BackgroundColor = Color.CornflowerBlue;
 
 			RoomName = roomName;
 

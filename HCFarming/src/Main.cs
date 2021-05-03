@@ -12,7 +12,7 @@ namespace HCFarming
 {
 	public class Main : Game
 	{
-		private GraphicsDeviceManager graphics;
+		private readonly GraphicsDeviceManager graphics;
 		private Rendering renderer;
 		private RoomManager roomManager;
 		private GUIManager guiManager;
@@ -58,7 +58,7 @@ namespace HCFarming
 
 		protected override void Draw(GameTime gameTime)
 		{
-			GraphicsDevice.Clear(RoomManager.currentRoom.backgroundColor);
+			GraphicsDevice.Clear(RoomManager.currentRoom.BackgroundColor);
 
 			renderer.Draw(gameTime);
 
