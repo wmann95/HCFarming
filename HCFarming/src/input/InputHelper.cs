@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace HCFarming.src.input
@@ -10,7 +11,9 @@ namespace HCFarming.src.input
 
 		public static bool isPointInBounds(Point p, Rectangle rect)
 		{
-			//(e.xPosition >= position.X - guiTexture.Width / 2 && e.xPosition <= position.X + guiTexture.Width / 2) && (e.yPosition >= position.Y - guiTexture.Height / 2 && e.yPosition <= position.Y + guiTexture.Height / 2)
+
+			Debug.WriteLine(String.Format("Mouse Pos: {0}; Rect: {1}", p, rect));
+
 			return rect.Contains(p);
 		}
 

@@ -34,7 +34,7 @@ namespace HCFarming.src.gui
 			if (texture != null)
 			{
 				guiTexture = Main.content.Load<Texture2D>(texture);
-				bounds = new Rectangle((int)pos.X, (int)pos.Y, guiTexture.Width, guiTexture.Height);
+				bounds = new Rectangle((int)(pos.X - guiTexture.Width / 2), (int)(pos.Y - guiTexture.Height / 2), guiTexture.Width, guiTexture.Height);
 			}
 			else
 			{

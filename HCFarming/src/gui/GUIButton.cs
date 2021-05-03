@@ -25,7 +25,7 @@ namespace HCFarming.src.gui
 
 		public override void OnMouseClicked(MouseEvent e)
 		{
-			//Debug.WriteLine(String.Format("{0} Button Pressed", button));
+			//Debug.WriteLine(String.Format("Mouse Pos: {0}; Rect: {1}", e.Position, bounds));
 
 			if (InputHelper.isPointInBounds(e.Position, bounds))
 			{
